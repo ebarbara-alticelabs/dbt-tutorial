@@ -35,15 +35,15 @@ WITH AUX AS (
               addr.name AS address,
               a.UNIQUE_ID AS UNIQUE_ID
        from location a
-                JOIN AUX aux on 1 = 1
-                JOIN cat_entity b on b.id = a.id_cat_entity
-                JOIN cat_entity ce on ce.id = b.id_root_entity
-                LEFT JOIN location_address_assoc la on la.id_location = a.id
-                LEFT JOIN address addr on addr.id = la.id_address and addr.primary = 1
-                LEFT JOIN owner d on d.id = a.id_owner
-                LEFT JOIN cat_state e on e.id = a.usage_state_id
-                LEFT JOIN project p on p.id = a.id_project
-                LEFT JOIN osp_cell cell on SDO_RELATE(cell.geom, a.geom, 'mask=ANYINTERACT') = 'TRUE'
+              JOIN AUX aux on 1 = 1
+              JOIN cat_entity b on b.id = a.id_cat_entity
+              JOIN cat_entity ce on ce.id = b.id_root_entity
+              LEFT JOIN location_address_assoc la on la.id_location = a.id
+              LEFT JOIN address addr on addr.id = la.id_address and addr.primary = 1
+              LEFT JOIN owner d on d.id = a.id_owner
+              LEFT JOIN cat_state e on e.id = a.usage_state_id
+              LEFT JOIN project p on p.id = a.id_project
+              LEFT JOIN osp_cell cell on SDO_RELATE(cell.geom, a.geom, 'mask=ANYINTERACT') = 'TRUE'
        where b.name like 'LOC.PHYSICAL.%'
 )
 
